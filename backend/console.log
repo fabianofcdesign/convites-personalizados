@@ -1,0 +1,14 @@
+app.post('/api/aniversariantes', (req, res) => {
+  console.log("Recebendo requisição POST", req.body);  // Adicione este log
+  const { name, date, time, location, day } = req.body;
+
+  if (!name || !date || !time || !location || !day) {
+    return res.status(400).json({ message: 'Todos os campos são obrigatórios' });
+  }
+
+  const newAniversariante = { name, date, time, location, day };
+  aniversariantes.push(newAniversariante);
+
+  console.log("Aniversariante adicionado:", newAniversariante);  // Verifique o que está sendo adicionado
+  res.status(201).json(newAniversariante);
+});
